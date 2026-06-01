@@ -76,3 +76,9 @@ Make sure you have **Node.js** and **npm** installed on your system.
 - **LinkedIn:** [linkedin.com/in/ahmadraza1911](https://linkedin.com/in/ahmadraza1911)
 - **GitHub:** [github.com/ahmadraza20021119](https://github.com/ahmadraza20021119)
 - **Location:** Chennai, India 🇮🇳
+
+## 👩‍💻 Author
+Ahmad raza
+B.Tech Student | Full Stack Developer
+
+“Develop with the great learning experiance.”
