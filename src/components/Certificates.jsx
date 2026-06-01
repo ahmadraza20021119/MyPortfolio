@@ -3,6 +3,7 @@ import { PDF_PATHS, certificates as certsData } from '../data/portfolioData';
 
 const Certificates = () => {
   const [modalData, setModalData] = useState({ isOpen: false, key: '', title: '' });
+  const [isMobile, setIsMobile] = useState(false);
 
   const openPDF = (key, title) => {
     setModalData({ isOpen: true, key, title });
@@ -15,11 +16,24 @@ const Certificates = () => {
   };
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(
+        window.innerWidth <= 768 || 
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+      );
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') closePDF();
     };
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
 
   return (
@@ -69,11 +83,28 @@ const Certificates = () => {
             <button className="pdf-modal-close" onClick={closePDF}>✕ Close</button>
           </div>
           {modalData.isOpen && (
-            <iframe 
-              id="pdf-frame" 
-              src={PDF_PATHS[modalData.key]} 
-              title={modalData.title}
-            ></iframe>
+            isMobile ? (
+              <div className="pdf-mobile-fallback">
+                <span className="pdf-icon">📄</span>
+                <h3>View Credential</h3>
+                <p>Mobile browsers require opening PDF documents in a new tab.</p>
+                <a 
+                  href={PDF_PATHS[modalData.key]} 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="btn btn-primary"
+                  onClick={closePDF}
+                >
+                  Open Certificate ↗
+                </a>
+              </div>
+            ) : (
+              <iframe 
+                id="pdf-frame" 
+                src={PDF_PATHS[modalData.key]} 
+                title={modalData.title}
+              ></iframe>
+            )
           )}
         </div>
       </div>

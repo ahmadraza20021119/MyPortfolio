@@ -199,3 +199,40 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   .nav-links li:nth-child(n+4){display:none;}
   .hero-btns{flex-direction:column;}
 }
+
+/* PDF Mobile Fallback styling */
+.pdf-mobile-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  text-align: center;
+  background: var(--card);
+  color: var(--text);
+  gap: 1.2rem;
+  min-height: 40vh;
+}
+.pdf-mobile-fallback .pdf-icon {
+  font-size: 3.5rem;
+  animation: float 3s ease-in-out infinite;
+}
+.pdf-mobile-fallback h3 {
+  font-size: 1.4rem;
+  color: var(--accent);
+}
+.pdf-mobile-fallback p {
+  font-size: 0.88rem;
+  color: var(--muted);
+  max-width: 280px;
+  line-height: 1.6;
+}
+.pdf-mobile-fallback .btn {
+  margin-top: 0.5rem;
+  cursor: pointer;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
