@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import CustomCursor from './components/CustomCursor';
 import BackgroundCanvas from './components/BackgroundCanvas';
 import Navbar from './components/Navbar';
@@ -42,6 +43,7 @@ function App() {
       <Experience />
       <Certificates />
       <Contact />
+      <Analytics />
     </>
   );
 }
